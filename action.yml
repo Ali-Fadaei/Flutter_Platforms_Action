@@ -1,5 +1,5 @@
-name: 'Get the Flutter Platforms'
-description: 'Get the Flutter Platforms from the pubspec file'
+name: 'Get Target Platforms of Flutter Project'
+description: 'Get Target Platforms of Your Flutter Project from the pubspec File.'
 author: 'Ali Fadaei'
 inputs:
   pubspec-path:
@@ -25,5 +25,5 @@ runs:
   using: 'node20'
   main: 'dist/index.js'
 branding:
-  icon: 'minimize'
-  color: 'blue'
+  icon: 'package'
+  color: 'cyan'
