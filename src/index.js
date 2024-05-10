@@ -4,7 +4,8 @@ const yaml = require('yaml');
 
 async function run() {
   try {
-    const pubspecFilePath = core.getInput('pubspec-path');
+    const pubspecFilePath = core.getInput('pubspec_path');
+    const customKey = core.getInput('custom_key');
     const fileContents = fs.readFileSync(pubspecFilePath, 'utf8');
     const yamlContents = yaml.parse(fileContents);
     const platforms = yamlContents['platforms'];
@@ -31,6 +32,8 @@ async function run() {
 
     const macos = platforms['macos'] !== undefined;
 
+    const customValue = yamlContents[customKey];
+
     core.setOutput('name', name);
 
     core.setOutput('android', android);
@@ -44,6 +47,9 @@ async function run() {
     core.setOutput('linux', linux);
 
     core.setOutput('macos', macos);
+
+    if (customValue !== undefined)
+      core.setOutput('custom_value', customValue);
 
   } catch (error) {
     core.setFailed(error.message);

@@ -1,6 +1,8 @@
 # GitHub Action — Get Target Platforms of Your Flutter Project from the pubspec File.
 
-This GitHub Action (written in composite run steps) allows you to leverage GitHub Actions to get the [Flutter](https://flutter.dev) Platforms from the pubspec file.
+This GitHub Action allows you to get The Target Platforms from the pubspec file with Name of it! 
+
+also optionally you can get value of any key inside pubspec.yaml file with passing 'custom_key' to it!
 
 ## Usage
 ### Pre-requisites
@@ -9,18 +11,21 @@ Create a workflow `.yml` file in your `.github/workflows` directory. An [example
 ### Inputs
 For more information on this input, see the [Workflow syntax for GitHub Actions](https://docs.github.com/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepswith)
 
-* `pubspec-file-path`: The pubspec.yaml file path. Optional. Default: `pubspec.yaml`
+* `pubspec_path`: The pubspec.yaml file path. Optional. Default: `pubspec.yaml`
+* `custom_key`: a custom key for retrive from pubspec.yaml file(optional). 
 
 ### Outputs
 For more information on this output, see the [Workflow syntax for GitHub Actions](https://docs.github.com/actions/reference/workflow-syntax-for-github-actions#jobsjob_idoutputs) and the [Context and expression syntax for GitHub Actions](https://docs.github.com/actions/reference/context-and-expression-syntax-for-github-actions#steps-context)
 
 * `name`: your Flutter project name
-* `android`: your Flutter project should Release on android platform
-* `ios`: your Flutter project should Release on ios platform
-* `web`: your Flutter project should Release on web platform
-* `windows`: your Flutter project should Release on windows platform
-* `linux`: your Flutter project should Release on linux platform
-* `macos`: your Flutter project should Release on macos platform
+* `android`: your Flutter project should Release on android platform(String Boolean)
+* `ios`: your Flutter project should Release on ios platform(String Boolean)
+* `web`: your Flutter project should Release on web platform(String Boolean)
+* `windows`: your Flutter project should Release on windows platform(String Boolean)
+* `linux`: your Flutter project should Release on linux platform(String Boolean)
+* `macos`: your Flutter project should Release on macos platform(String Boolean)
+* `macos`: your Flutter project should Release on macos platform(String Boolean)
+* `custom_value`: value of the custom key retrived from pubspec.yaml file
 
 ### Common workflow
 
@@ -33,7 +38,8 @@ platforms:
   windows:
   macos:
 ```
-2. Use the action's output as an input to [Flutter action](https://github.com/marketplace/actions/flutter-action). For example:
+
+For example:
 ```yaml
 on: push
 
@@ -46,21 +52,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Get Flutter version
-        id: get-flutter-version
-        uses: zgosalvez/github-actions-get-flutter-version-env@v2
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v1
+      - name: Get Target Platforms from pubspec.yaml
+        id: platform_check
+        uses: Ali-Fadaei/flutter-platforms-action@v1.0.3
         with:
-          flutter-version: ${{ steps.get-flutter-version.outputs.version }}
+          custom_key: custom_key_wanted_from_pubspec.yml
+    outputs:
+      package_name: ${{steps.platform_check.outputs.name}}
+      build_android: ${{steps.platform_check.outputs.android}}
+      build_web: ${{steps.platform_check.outputs.web}}
+      build_windows: ${{steps.platform_check.outputs.windows}}
+      build_ios: ${{steps.platform_check.outputs.ios}}    
+      build_linux: ${{steps.platform_check.outputs.linux}}    
+      build_macos: ${{steps.platform_check.outputs.macos}} 
+      custom_key_value: ${{steps.platform_check.outputs.custom-value}}   
 ```
-
-## Shout-out
-A special mention goes to [@daohoangson](https://github.com/daohoangson), who came up with the initial solution at [subosito/flutter-action/issues/47#issuecomment-675821988](https://github.com/subosito/flutter-action/issues/47#issuecomment-675821988).
-
-### Flutter Workflows
-
-This is used in my opinionated [GitHub Actions: Flutter Workflows](https://github.com/zgosalvez/github-actions-flutter-workflows) repository along with other actions for a complete end-to-end DevOps experience.
-
-## License
-The scripts and documentation in this project are released under the [MIT License](LICENSE.md)

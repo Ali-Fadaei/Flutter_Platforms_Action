@@ -2,9 +2,13 @@ name: 'Get Target Platforms from pubspec.yaml'
 description: 'Get Target Platforms of Your Flutter Project from the pubspec File.'
 author: 'Ali Fadaei'
 inputs:
-  pubspec-path:
+  pubspec_path:
     description: 'The pubspec.yaml file path. Optional. Default: `pubspec.yaml`'
     default: 'pubspec.yaml'
+  custom_key:
+    description: 'a custom key for retrive from pubspec.yaml file'
+    required: false
+
 outputs:
   name: 
     description: "your Flutter project name"
@@ -20,6 +24,9 @@ outputs:
     description: "your Flutter project should Release on linux platform"
   macos: 
     description: "your Flutter project should Release on macos platform"
+  custom_value:
+    description: 'value of the custom key retrived from pubspec.yaml file'
+
 
 runs:
   using: 'node20'
