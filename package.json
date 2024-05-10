@@ -1,7 +1,7 @@
 {
   "name": "flutter-platforms-action",
   "version": "1.0.0",
-  "description": "Get the Flutter Platforms from the pubspec file",
+  "description": "Get Target Platforms of Your Flutter Project from the pubspec File.",
   "main": "dist/index.js",
   "scripts": {
     "lint": "eslint .",

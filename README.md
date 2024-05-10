@@ -1,4 +1,4 @@
-# GitHub Action — Get the Flutter Platforms From Pubspec.yaml
+# GitHub Action — Get Target Platforms of Your Flutter Project from the pubspec File.
 
 This GitHub Action (written in composite run steps) allows you to leverage GitHub Actions to get the [Flutter](https://flutter.dev) Platforms from the pubspec file.
 
