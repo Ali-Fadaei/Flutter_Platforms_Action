@@ -1,0 +1,29 @@
+name: 'Get the Flutter Platforms'
+description: 'Get the Flutter Platforms from the pubspec file'
+author: 'Ali Fadaei'
+inputs:
+  pubspec-path:
+    description: 'The pubspec.yaml file path. Optional. Default: `pubspec.yaml`'
+    default: 'pubspec.yaml'
+outputs:
+  name: 
+    description: "your Flutter project name"
+  android: 
+    description: "your Flutter project should Release on android platform"
+  ios: 
+    description: "your Flutter project should Release on ios platform"
+  web: 
+    description: "your Flutter project should Release on web platform"
+  windows: 
+    description: "your Flutter project should Release on windows platform"
+  linux: 
+    description: "your Flutter project should Release on linux platform"
+  macos: 
+    description: "your Flutter project should Release on macos platform"
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+branding:
+  icon: 'minimize'
+  color: 'blue'

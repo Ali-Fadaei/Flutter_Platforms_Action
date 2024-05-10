@@ -1,0 +1,32 @@
+{
+  "name": "flutter-platforms-action",
+  "version": "1.0.0",
+  "description": "Get the Flutter Platforms from the pubspec file",
+  "main": "dist/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "prepare": "ncc build src/index.js -o dist --source-map --license licenses.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ali-Fadaei/flutter-platforms-action"
+  },
+  "keywords": [
+    "actions",
+    "node",
+    "flutter",
+    "dart",
+    "pubspec",
+    "platforms"
+  ],
+  "author": "Ali Fadaei",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "yaml": "^2.4.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.0",
+    "eslint": "^9.1.1"
+  }
+}
