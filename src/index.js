@@ -31,7 +31,7 @@ async function run() {
 
     const macos = platforms['macos'] !== undefined;
 
-    core.setOutput('name', android);
+    core.setOutput('name', name);
 
     core.setOutput('android', android);
 
